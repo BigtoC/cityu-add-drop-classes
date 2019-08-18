@@ -1,6 +1,7 @@
 # coding=utf-8
 
 import data
+import add_drop_classes
 
 from selenium import webdriver
 import platform

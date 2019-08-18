@@ -3,4 +3,3 @@
 1. Modify info.json first
 2. Enter your EID and password
 3. Let the program run!
-

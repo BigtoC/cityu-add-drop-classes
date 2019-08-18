@@ -1,5 +1,7 @@
 # coding=utf-8
 
+import main
+
 import time
 from _datetime import datetime
 from dataclasses import dataclass
@@ -10,7 +12,7 @@ info = None
 url = "https://banweb.cityu.edu.hk/pls/PROD/bwskfreg.P_AltPin"
 username: str
 password: str
-driver = None
+driver = main.set_driver()
 
 
 @dataclass
