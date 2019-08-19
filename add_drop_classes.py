@@ -50,6 +50,8 @@ def login():
     current_window = data.driver.current_window_handle
     data.driver.switch_to.window(current_window)
 
+# crn_id1, crn_id2
+# find_element_by_id
 
 def get_eid_field_name(page) -> str:
     name = re.search(r'User\d{14}', page)[0]
