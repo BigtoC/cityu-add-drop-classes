@@ -19,8 +19,9 @@ def set_driver():
     driver = None
     if 'Windows' in platform.system():
         driver = webdriver.Chrome(executable_path='venv\chromedriver.exe', options=chrome_options)
-    print(f"{data.current_time()}Driver is set! \n")
     data.driver = driver
+
+    print(f"{data.current_time()}Driver is set! \n")
     return driver
 
 
@@ -31,7 +32,7 @@ def main():
     data.username = input(f"{data.current_time()}Input your EID: ")
     data.password = input(f"{data.current_time()}Input your password: ")
 
-
+    add_drop_classes.selenium_submit()
 
 
 if __name__ == '__main__':
