@@ -19,13 +19,28 @@ def selenium_submit():
     if "to login AIMS." in page:
         login()
 
-    # WebDriverWait(data.driver, 10).until(EC.title_contains("Add"))
-    time.sleep(3)
+    WebDriverWait(data.driver, 10).until_not(EC.title_contains("Login"))
+
     for item in data.cookies:
         data.driver.add_cookie(item)
 
-    add_drop_page = BeautifulSoup(data.driver.page_source, 'lxml').prettify()
-    print(add_drop_page)
+    '''
+    Navigation path: 
+       Personal Information -> Course Registration -> Add or Drop Classes -> Registration Term -> Add or Drop Classes
+    '''
+    # Click: Course Registration
+    data.driver.find_elements_by_xpath("//*[contains(text(), 'Course Registration')]")[0].click()
+    WebDriverWait(data.driver, 10).until(EC.title_contains("Course Registration"))
+
+    # Click: Add or Drop Classes
+    data.driver.find_elements_by_xpath("//*[contains(text(), 'Add or Drop Classes')]")[0].click()
+    WebDriverWait(data.driver, 10).until(EC.title_contains("Registration Term"))
+
+    # Click: submit
+    data.driver.find_elements_by_xpath("//*[@type='submit']")[1].click()
+    WebDriverWait(data.driver, 10).until(EC.title_contains("Add or Drop Classes"))
+
+    # print("You may register during the following times:" in data.driver.page_source)
 
     add_classes()
 
@@ -57,8 +72,6 @@ def login():
     # Store Cookie
     data.cookies = data.driver.get_cookies()
 
-# crn_id1, crn_id2
-# find_element_by_id
 
 def get_eid_field_name(page) -> str:
     name = re.search(r'User\d{14}', page)[0]
@@ -66,6 +79,10 @@ def get_eid_field_name(page) -> str:
 
 
 def add_classes():
+    data.driver.refresh()
+    # crn_id1, crn_id2
+    # find_element_by_id
+
     print("add classes")
 
 

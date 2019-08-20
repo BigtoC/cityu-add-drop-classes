@@ -1,7 +1,5 @@
 # coding=utf-8
 
-import main
-
 import time
 from _datetime import datetime
 from dataclasses import dataclass
@@ -24,7 +22,6 @@ headers = {
         'User-Agent': 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36'
     }
-
 
 
 @dataclass
