@@ -3,12 +3,10 @@
 import data
 
 import time
-from datetime import datetime
 from bs4 import BeautifulSoup
 import re
-import urllib.request
-import requests
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from decimal import Decimal, ROUND_HALF_UP
 
 
@@ -21,11 +19,10 @@ def selenium_submit():
     if "to login AIMS." in page:
         login()
 
-    # print(data.cookies)
-
+    # WebDriverWait(data.driver, 10).until(EC.title_contains("Add"))
+    time.sleep(3)
     for item in data.cookies:
         data.driver.add_cookie(item)
-    data.driver.get(url=data.url)
 
     add_drop_page = BeautifulSoup(data.driver.page_source, 'lxml').prettify()
     print(add_drop_page)
