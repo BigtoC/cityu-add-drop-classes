@@ -14,6 +14,17 @@ login_url = "https://banweb.cityu.edu.hk/pls/PROD/twgkpswd_cityu.P_WWWLogin"
 username: str
 password: str
 driver = None
+cookies = None
+headers = {
+        'Accept': '*/*',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'en-HK,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,zh-HK;q=0.6,en-US;q=0.5,ja;q=0.4',
+        'Connection': 'keep-alive',
+        'Content-Type': 'text/plain; charset=UTF-8',
+        'User-Agent': 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                      'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36'
+    }
+
 
 
 @dataclass
