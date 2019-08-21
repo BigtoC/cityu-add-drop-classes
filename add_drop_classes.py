@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 import re
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+import random
 
 
 def selenium_submit():
@@ -28,10 +29,12 @@ def selenium_submit():
     # Click: Course Registration
     data.driver.find_elements_by_xpath("//*[contains(text(), 'Course Registration')]")[0].click()
     WebDriverWait(data.driver, 10).until(ec.title_contains("Course Registration"))
+    random_wait()
 
     # Click: Add or Drop Classes
     data.driver.find_elements_by_xpath("//*[contains(text(), 'Add or Drop Classes')]")[0].click()
     WebDriverWait(data.driver, 10).until(ec.title_contains("Registration Term"))
+    random_wait()
 
     # Click: submit
     data.driver.find_elements_by_xpath("//*[@value='Submit']")[0].click()
@@ -57,11 +60,13 @@ def login():
     eid_field = data.driver.find_element_by_name(eid_name)
     eid_field.clear()
     eid_field.send_keys(data.username)
+    random_wait()
 
     # Fill password
     pwd_field = data.driver.find_element_by_name(pwd_name)
     pwd_field.clear()
     pwd_field.send_keys(data.password)
+    random_wait()
 
     # Click login button
     data.driver.find_element_by_class_name(button_name).click()
@@ -81,6 +86,11 @@ def wait_until():
 
     while int(time.time()) < data.info.start_timestamp:
         time.sleep(0.1)
+
+
+def random_wait():
+    wait_time = random.random(0.2, 1.1)
+    time.sleep(wait_time)
 
 
 def add_classes():
