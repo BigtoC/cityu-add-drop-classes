@@ -32,6 +32,7 @@ class Info:
 
 
 def fetch_info():
+    # Load time and CRNs from json file
     with open(info_file) as f:
         data = json.load(f)
         _time = datetime.strptime(data["time"], '%Y-%m-%d %H:%M:%S')

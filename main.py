@@ -14,7 +14,7 @@ def set_driver():
     chrome_options.headless = True
     # chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('blink-settings=imagesEnabled==false')
+    chrome_options.add_argument('blink-settings=imagesEnabled==false')  # Not loading images
     chrome_options.add_argument(f"user-agent={data.headers['User-Agent']}")
 
     driver = None
