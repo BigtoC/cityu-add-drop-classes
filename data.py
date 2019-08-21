@@ -27,17 +27,19 @@ headers = {
 @dataclass
 class Info:
     time: time
+    start_timestamp: time
     courses: list
 
 
 def fetch_info():
     with open(info_file) as f:
         data = json.load(f)
-        _time = datetime.strptime(data["time"], '%H:%M:%S')
+        _time = datetime.strptime(data["time"], '%Y-%m-%d %H:%M:%S')
         _course_list = data["courses"]
 
+    _timestamp = int(time.mktime(_time.timetuple()))
     global info
-    info = Info(_time, _course_list)
+    info = Info(_time, _timestamp, _course_list)
 
 
 def current_time() -> str:
