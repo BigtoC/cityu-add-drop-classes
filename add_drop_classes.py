@@ -6,8 +6,7 @@ import time
 from bs4 import BeautifulSoup
 import re
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from decimal import Decimal, ROUND_HALF_UP
+from selenium.webdriver.support import expected_conditions as ec
 
 
 def selenium_submit():
@@ -19,10 +18,7 @@ def selenium_submit():
     if "to login AIMS." in page:
         login()
 
-    WebDriverWait(data.driver, 10).until_not(EC.title_contains("Login"))
-
-    for item in data.cookies:
-        data.driver.add_cookie(item)
+    WebDriverWait(data.driver, 10).until_not(ec.title_contains("Login"))
 
     '''
     Navigation path: 
@@ -31,15 +27,15 @@ def selenium_submit():
     print(f"{data.current_time()}Navigating to add/drop page... \n")
     # Click: Course Registration
     data.driver.find_elements_by_xpath("//*[contains(text(), 'Course Registration')]")[0].click()
-    WebDriverWait(data.driver, 10).until(EC.title_contains("Course Registration"))
+    WebDriverWait(data.driver, 10).until(ec.title_contains("Course Registration"))
 
     # Click: Add or Drop Classes
     data.driver.find_elements_by_xpath("//*[contains(text(), 'Add or Drop Classes')]")[0].click()
-    WebDriverWait(data.driver, 10).until(EC.title_contains("Registration Term"))
+    WebDriverWait(data.driver, 10).until(ec.title_contains("Registration Term"))
 
     # Click: submit
     data.driver.find_elements_by_xpath("//*[@value='Submit']")[0].click()
-    WebDriverWait(data.driver, 10).until(EC.title_contains("Add or Drop Classes"))
+    WebDriverWait(data.driver, 10).until(ec.title_contains("Add or Drop Classes"))
 
     if "You may register during the following times:" in data.driver.page_source:
         print(f"{data.current_time()}Got add/drop page and wait! \n")
@@ -70,9 +66,6 @@ def login():
     # Click login button
     data.driver.find_element_by_class_name(button_name).click()
     print(f"{data.current_time()}Login success! \n")
-
-    # Store Cookie
-    data.cookies = data.driver.get_cookies()
 
 
 def get_eid_field_name(page) -> str:
@@ -106,7 +99,7 @@ def add_classes():
 
     # Click: submit
     data.driver.find_elements_by_xpath("//*[@value='Submit Changes']")[0].click()
-    WebDriverWait(data.driver, 10).until(EC.title_contains("Add or Drop Classes"))
+    WebDriverWait(data.driver, 10).until(ec.title_contains("Add or Drop Classes"))
 
     if "Registration Add Errors" in data.driver.page_source:
         print(f"{data.current_time()}Registration Add Errors")
