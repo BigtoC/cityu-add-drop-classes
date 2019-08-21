@@ -89,13 +89,17 @@ def wait_until():
 
 
 def random_wait():
-    wait_time = random.random(0.2, 1.1)
+    wait_time = random.uniform(0.2, 1.1)
     time.sleep(wait_time)
 
 
 def add_classes():
     wait_until()
     data.driver.refresh()
+    if "You may register during the following times" in data.driver.page_source:
+        print(f"{data.current_time()}Please check time you set in info.json!")
+        print(f"{data.current_time()}This program will quit now, please rerun this after you edit the time. \n")
+        return
 
     # Now enter add/drop page
     print(f"{data.current_time()}Now enter add/drop page")
@@ -112,7 +116,7 @@ def add_classes():
     WebDriverWait(data.driver, 10).until(ec.title_contains("Add or Drop Classes"))
 
     if "Registration Add Errors" in data.driver.page_source:
-        print(f"{data.current_time()}Registration Add Errors")
+        print(f"{data.current_time()}Registration Add Errors, please login AIMS for details")
     else:
         print(f"{data.current_time()}Added classes!")
 
