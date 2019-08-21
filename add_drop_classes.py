@@ -38,11 +38,11 @@ def selenium_submit():
     WebDriverWait(data.driver, 10).until(EC.title_contains("Registration Term"))
 
     # Click: submit
-    data.driver.find_elements_by_xpath("//*[@type='submit']")[1].click()
+    data.driver.find_elements_by_xpath("//*[@value='Submit']")[0].click()
     WebDriverWait(data.driver, 10).until(EC.title_contains("Add or Drop Classes"))
 
     if "You may register during the following times:" in data.driver.page_source:
-        print(f"{data.current_time()}Got add/drop page! \n")
+        print(f"{data.current_time()}Got add/drop page and wait! \n")
 
     add_classes()
 
@@ -104,9 +104,14 @@ def add_classes():
         crn_field.clear()
         crn_field.send_keys(data.info.courses[i])
 
-        # Click: submit
-        data.driver.find_elements_by_xpath("//*[@type='submit']")[1].click()
-        WebDriverWait(data.driver, 10).until(EC.title_contains("Add or Drop Classes"))
+    # Click: submit
+    data.driver.find_elements_by_xpath("//*[@value='Submit Changes']")[0].click()
+    WebDriverWait(data.driver, 10).until(EC.title_contains("Add or Drop Classes"))
+
+    if "Registration Add Errors" in data.driver.page_source:
+        print(f"{data.current_time()}Registration Add Errors")
+    else:
+        print(f"{data.current_time()}Added classes!")
 
 
 if __name__ == "__main__":
