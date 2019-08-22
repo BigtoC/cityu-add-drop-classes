@@ -112,7 +112,7 @@ def add_classes():
     if "Registration Add Errors" in data.driver.page_source:
         print(f"{data.current_time()}Registration Add Errors, please login AIMS for details")
     else:
-        print(f"{data.current_time()}Added classes!")
+        print(f"{data.current_time()}Added courses: {data.info.courses}")
 
 
 if __name__ == "__main__":
