@@ -10,7 +10,7 @@ import platform
 
 def set_driver():
     # Set driver
-    print(f"{common.current_time()}Setting up browser driver...")
+    common.logger("Setting up browser driver...")
     chrome_options = webdriver.ChromeOptions()
     chrome_options.headless = True
     # chrome_options.add_argument('--headless')
@@ -24,7 +24,7 @@ def set_driver():
         driver = webdriver.Chrome(executable_path='venv\chromedriver.exe', options=chrome_options)
 
     data.driver = driver
-    print(f"{common.current_time()}Driver is set! \n")
+    common.logger("Driver is set! \n")
 
 
 def main():
@@ -40,6 +40,8 @@ def main():
     selenium_submit()
 
     data.driver.quit()
+
+    input(f"{common.current_time()}Press any key to quit!")
 
 
 if __name__ == '__main__':

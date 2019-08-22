@@ -11,6 +11,7 @@ login_url = "https://banweb.cityu.edu.hk/pls/PROD/twgkpswd_cityu.P_WWWLogin"
 username: str
 password: str
 driver = None
+log_file_name: str
 headers = {
         'Accept': '*/*',
         'Accept-Encoding': 'gzip, deflate, br',
