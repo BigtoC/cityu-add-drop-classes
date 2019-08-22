@@ -2,6 +2,7 @@
 
 import data
 from add_drop_classes import selenium_submit
+import common
 
 from selenium import webdriver
 import platform
@@ -9,7 +10,7 @@ import platform
 
 def set_driver():
     # Set driver
-    print(f"{data.current_time()}Setting up browser driver...")
+    print(f"{common.current_time()}Setting up browser driver...")
     chrome_options = webdriver.ChromeOptions()
     chrome_options.headless = True
     # chrome_options.add_argument('--headless')
@@ -23,15 +24,15 @@ def set_driver():
         driver = webdriver.Chrome(executable_path='venv\chromedriver.exe', options=chrome_options)
 
     data.driver = driver
-    print(f"{data.current_time()}Driver is set! \n")
+    print(f"{common.current_time()}Driver is set! \n")
 
 
 def main():
     data.fetch_info()
 
-    print(f"{data.current_time()}This program will not store any personal info.")
-    data.username = input(f"{data.current_time()}Input your EID: ")
-    data.password = input(f"{data.current_time()}Input your password: ")
+    print(f"{common.current_time()}This program will not store any personal info.")
+    data.username = input(f"{common.current_time()}Input your EID: ")
+    data.password = input(f"{common.current_time()}Input your password: ")
     print("")
 
     set_driver()

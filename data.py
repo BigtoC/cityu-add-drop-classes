@@ -4,7 +4,6 @@ import time
 from _datetime import datetime
 from dataclasses import dataclass
 import json
-import random
 
 info_file = "info.json"
 info = None
@@ -40,17 +39,6 @@ def fetch_info():
     _timestamp = int(time.mktime(_time.timetuple()))
     global info
     info = Info(_time, _timestamp, _course_list)
-
-
-def current_time() -> str:
-    now_time = time.time()
-    readable_time = datetime.fromtimestamp(now_time).strftime('[%H:%M:%S:%m] - ')
-    return readable_time
-
-
-def random_wait():
-    wait_time = random.uniform(0.5, 1.5)
-    time.sleep(wait_time)
 
 
 if __name__ == '__main__':
