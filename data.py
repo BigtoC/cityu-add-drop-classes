@@ -25,7 +25,7 @@ headers = {
 
 @dataclass
 class Info:
-    time: time
+    start_time: time
     start_timestamp: time
     courses: list
 
@@ -49,7 +49,7 @@ def current_time() -> str:
 
 
 def random_wait():
-    wait_time = random.uniform(0.2, 1.1)
+    wait_time = random.uniform(0.5, 1.5)
     time.sleep(wait_time)
 
 

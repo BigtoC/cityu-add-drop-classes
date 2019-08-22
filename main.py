@@ -1,8 +1,7 @@
 # coding=utf-8
 
 import data
-import login
-import add_drop_classes
+from add_drop_classes import selenium_submit
 
 from selenium import webdriver
 import platform
@@ -29,15 +28,17 @@ def set_driver():
 
 def main():
     data.fetch_info()
-    set_driver()
+
     print(f"{data.current_time()}This program will not store any personal info.")
     data.username = input(f"{data.current_time()}Input your EID: ")
     data.password = input(f"{data.current_time()}Input your password: ")
     print("")
 
-    login.login()
+    set_driver()
 
-    add_drop_classes.selenium_submit()
+    selenium_submit()
+
+    data.driver.quit()
 
 
 if __name__ == '__main__':
