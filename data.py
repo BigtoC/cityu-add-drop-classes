@@ -7,7 +7,6 @@ import json
 
 info_file = "info.json"
 info = None
-url = "https://banweb.cityu.edu.hk/pls/PROD/bwskfreg.P_AltPin"
 login_url = "https://banweb.cityu.edu.hk/pls/PROD/twgkpswd_cityu.P_WWWLogin"
 username: str
 password: str

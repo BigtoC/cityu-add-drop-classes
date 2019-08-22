@@ -11,14 +11,7 @@ import random
 
 
 def selenium_submit():
-    print(f"{data.current_time()}Getting web page source from {data.url} ...")
-    data.driver.get(url=data.url)
-    page = BeautifulSoup(data.driver.page_source, 'lxml').prettify()
-    print(f"{data.current_time()}Got source! \n")
-
-    if "to login AIMS." in page:
-        login()
-
+    login()
     WebDriverWait(data.driver, 10).until_not(ec.title_contains("Login"))
 
     '''
@@ -83,6 +76,7 @@ def wait_until():
     waiting = data.info.start_timestamp - now
     if now < data.info.start_timestamp:
         print(f"{data.current_time()}Please wait {waiting} seconds until {data.info.time}...")
+        time.sleep(waiting - 5)
 
     while int(time.time()) < data.info.start_timestamp:
         time.sleep(0.1)
