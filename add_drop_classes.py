@@ -3,15 +3,11 @@
 import data
 
 import time
-from bs4 import BeautifulSoup
-import re
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
-import random
 
 
 def selenium_submit():
-    login()
     WebDriverWait(data.driver, 10).until_not(ec.title_contains("Login"))
 
     '''
@@ -22,12 +18,12 @@ def selenium_submit():
     # Click: Course Registration
     data.driver.find_elements_by_xpath("//*[contains(text(), 'Course Registration')]")[0].click()
     WebDriverWait(data.driver, 10).until(ec.title_contains("Course Registration"))
-    random_wait()
+    data.random_wait()
 
     # Click: Add or Drop Classes
     data.driver.find_elements_by_xpath("//*[contains(text(), 'Add or Drop Classes')]")[0].click()
     WebDriverWait(data.driver, 10).until(ec.title_contains("Registration Term"))
-    random_wait()
+    data.random_wait()
 
     # Click: submit
     data.driver.find_elements_by_xpath("//*[@value='Submit']")[0].click()
@@ -39,38 +35,6 @@ def selenium_submit():
     add_classes()
 
 
-def login():
-    print(f"{data.current_time()}Getting login web page source from {data.login_url} ...")
-    data.driver.get(data.login_url)
-    login_page = BeautifulSoup(data.driver.page_source, 'lxml').prettify()
-    eid_name = get_eid_field_name(login_page)
-    pwd_name = "p_password"
-    button_name = "input_button"
-    print(f"{data.current_time()}Got login page source! \n")
-
-    print(f"{data.current_time()}Filling login information...")
-    # Fill EID
-    eid_field = data.driver.find_element_by_name(eid_name)
-    eid_field.clear()
-    eid_field.send_keys(data.username)
-    random_wait()
-
-    # Fill password
-    pwd_field = data.driver.find_element_by_name(pwd_name)
-    pwd_field.clear()
-    pwd_field.send_keys(data.password)
-    random_wait()
-
-    # Click login button
-    data.driver.find_element_by_class_name(button_name).click()
-    print(f"{data.current_time()}Login success! \n")
-
-
-def get_eid_field_name(page) -> str:
-    name = re.search(r'User\d{14}', page)[0]
-    return name
-
-
 def wait_until():
     now = int(time.time())
     waiting = data.info.start_timestamp - now
@@ -80,11 +44,6 @@ def wait_until():
 
     while int(time.time()) < data.info.start_timestamp:
         time.sleep(0.1)
-
-
-def random_wait():
-    wait_time = random.uniform(0.2, 1.1)
-    time.sleep(wait_time)
 
 
 def add_classes():

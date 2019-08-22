@@ -1,6 +1,7 @@
 # coding=utf-8
 
 import data
+import login
 import add_drop_classes
 
 from selenium import webdriver
@@ -33,6 +34,8 @@ def main():
     data.username = input(f"{data.current_time()}Input your EID: ")
     data.password = input(f"{data.current_time()}Input your password: ")
     print("")
+
+    login.login()
 
     add_drop_classes.selenium_submit()
 

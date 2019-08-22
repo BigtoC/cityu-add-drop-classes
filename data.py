@@ -4,6 +4,7 @@ import time
 from _datetime import datetime
 from dataclasses import dataclass
 import json
+import random
 
 info_file = "info.json"
 info = None
@@ -45,6 +46,11 @@ def current_time() -> str:
     now_time = time.time()
     readable_time = datetime.fromtimestamp(now_time).strftime('[%H:%M:%S:%m] - ')
     return readable_time
+
+
+def random_wait():
+    wait_time = random.uniform(0.2, 1.1)
+    time.sleep(wait_time)
 
 
 if __name__ == '__main__':
