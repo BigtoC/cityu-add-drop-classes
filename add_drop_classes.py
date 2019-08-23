@@ -71,13 +71,20 @@ def wait_until():
         navigate_to()
 
 
-def add_classes():
+def refresh():
     common.logger("Refreshing! \n")
     data.driver.refresh()
     try:
         data.driver.switch_to.alert.accept()
     except selenium.common.exceptions.NoAlertPresentException:
         pass
+
+    WebDriverWait(data.driver, 10).until(ec.title_contains("Add or Drop Classes"))
+    # TODO: Exception handler (e.g. Too many requests ahead of you)
+
+
+def add_classes():
+    refresh()
 
     if "You may register during the following times" in data.driver.page_source:
         common.logger("Please check time you set in info.json!")

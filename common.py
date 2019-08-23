@@ -55,6 +55,4 @@ def check_existing(name: str) -> bool:
 
 
 if __name__ == '__main__':
-    logger('hahaha')
-    logger('lalala')
     logger('hhh')
